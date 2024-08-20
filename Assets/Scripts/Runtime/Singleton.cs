@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-
 namespace UnityCommunity.UnitySingleton
 {
 
@@ -44,13 +39,10 @@ namespace UnityCommunity.UnitySingleton
         {
             get
             {
-                if (Instance == null)
-                {
+                if (Instance == null) {
                     //ensure that only one thread can execute
-                    lock (typeof(T))
-                    {
-                        if (Instance == null)
-                        {
+                    lock (typeof(T)) {
+                        if (Instance == null) {
                             instance = new T();
                             instance.InitializeSingleton();
                         }
@@ -86,8 +78,7 @@ namespace UnityCommunity.UnitySingleton
 
         public virtual void InitializeSingleton()
         {
-            if (this.initializationStatus != SingletonInitializationStatus.None)
-            {
+            if (this.initializationStatus != SingletonInitializationStatus.None) {
                 return;
             }
 
@@ -107,8 +98,7 @@ namespace UnityCommunity.UnitySingleton
 
         public static void DestroyInstance()
         {
-            if (instance == null)
-            {
+            if (instance == null) {
                 return;
             }
 

@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityCommunity.UnitySingleton;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityCommunity.UnitySingleton
 {
@@ -39,11 +34,9 @@ namespace UnityCommunity.UnitySingleton
         {
             get
             {
-                if (instance == null)
-                {
+                if (instance == null) {
                     instance = FindObjectOfType<T>();
-                    if (instance == null)
-                    {
+                    if (instance == null) {
                         GameObject obj = new GameObject();
                         obj.name = typeof(T).Name;
                         instance = obj.AddComponent<T>();
@@ -68,23 +61,17 @@ namespace UnityCommunity.UnitySingleton
         /// </summary>
         protected virtual void Awake()
         {
-            if (instance == null)
-            {
+            if (instance == null) {
                 instance = this as T;
 
                 // Initialize existing instance
                 InitializeSingleton();
-            }
-            else
-            {
+            } else {
 
                 // Destory duplicates
-                if (Application.isPlaying)
-                {
+                if (Application.isPlaying) {
                     Destroy(gameObject);
-                }
-                else
-                {
+                } else {
                     DestroyImmediate(gameObject);
                 }
             }
@@ -118,8 +105,7 @@ namespace UnityCommunity.UnitySingleton
 
         public virtual void InitializeSingleton()
         {
-            if (this.initializationStatus != SingletonInitializationStatus.None)
-            {
+            if (this.initializationStatus != SingletonInitializationStatus.None) {
                 return;
             }
 
@@ -139,8 +125,7 @@ namespace UnityCommunity.UnitySingleton
 
         public static void DestroyInstance()
         {
-            if (instance == null)
-            {
+            if (instance == null) {
                 return;
             }
 
